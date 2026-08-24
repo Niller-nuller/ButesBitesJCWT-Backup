@@ -5,11 +5,21 @@ import java.util.Scanner;
 
 public class Main {
 
-    private static final String[] DISHES = {
-            "Festivalburger",
-            "Sprøde fritter",
-            "Vegansk bowl"
+    private static final Dish[] DISHES = {
+            new Dish("Festivalburger", 59),
+            new Dish("Sprøde fritter", 35),
+            new Dish("Vegansk bowl", 65)
     };
+
+    private static final class Dish {
+        private final String name;
+        private final int price;
+
+        private Dish(String name, int price) {
+            this.name = name;
+            this.price = price;
+        }
+    }
 
     public static void main(String[] args) {
         Scanner scanner = new Scanner(System.in);
@@ -48,7 +58,8 @@ public class Main {
         System.out.println("Retter:");
 
         for (int i = 0; i < DISHES.length; i++) {
-            System.out.printf("%d. %s%n", i + 1, DISHES[i]);
+            Dish dish = DISHES[i];
+            System.out.printf("%d. %s - %d kr%n", i + 1, dish.name, dish.price);
         }
     }
 }
