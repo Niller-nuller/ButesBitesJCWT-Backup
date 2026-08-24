@@ -5,11 +5,7 @@ import java.util.Scanner;
 
 public class Main {
 
-    private static final String[] DISHES = {
-            "Festivalburger",
-            "Sprøde fritter",
-            "Vegansk bowl"
-    };
+    private static final MenuService MENU_SERVICE = new MenuService();
 
     public static void main(String[] args) {
         Scanner scanner = new Scanner(System.in);
@@ -45,10 +41,12 @@ public class Main {
     }
 
     private static void showDishes() {
+        List<Dish> dishes = MENU_SERVICE.getDishes();
         System.out.println("Retter:");
 
-        for (int i = 0; i < DISHES.length; i++) {
-            System.out.printf("%d. %s%n", i + 1, DISHES[i]);
+        for (int i = 0; i < dishes.size(); i++) {
+            Dish dish = dishes.get(i);
+            System.out.printf("%d. %s - %d kr%n", i + 1, dish.getName(), dish.getPrice());
         }
     }
 }
